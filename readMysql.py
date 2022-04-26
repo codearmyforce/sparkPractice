@@ -1,6 +1,6 @@
 '''
-Reading data from mysql
-ETL Jobs
+Reading data from local mysql and wrting back after aggregation operations.
+
 @author:Mr. Ravi Kumar
 '''
 #creating the spark session
