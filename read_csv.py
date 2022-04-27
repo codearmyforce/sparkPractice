@@ -48,7 +48,7 @@ def calculation(spark, sc):
     ratings_df.registerTempTable("ratings")
     tags_df.registerTempTable("tags")
     
-    output=spark.sql(""" SELECT * FROM movies inner join ratings on movies.movieId=ratings.movieId where rating>=5 """)
+    output=spark.sql(""" SELECT movies.movieId, movies.title, movies.genres, ratings.userId, ratings.rating, ratings.timestamp FROM movies inner join ratings on movies.movieId=ratings.movieId where rating>=5 """)
     final=output.withColumn("timestamp", F.from_unixtime(output['timestamp'],"MM-dd-yyyy HH:mm:ss"))
     return final
 
