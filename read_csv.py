@@ -13,7 +13,7 @@ def create_session():
     return spark, sc
 
 def read_csv(spark, sc):
-    path=r'C:\Users\K501099102986\Documents\Notes\dataset'
+    path=r'C:\Users\ravi\dataset'
 
     #files
     file1='links.csv'
