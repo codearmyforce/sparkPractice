@@ -31,7 +31,7 @@ def read_data(spark, sc):
     .load()
     print("Bulid mysql connection successfully ! ")
     return sourceDf
-
+#validating the data
 def data_disp(spark,sc):
     df=read_data(spark, sc)
     print("***************************Data Preview*******************************************")
@@ -49,7 +49,7 @@ def secondHighest(spark,sc):
     v=W.Window.partitionBy(sourceDf["Job"]).orderBy(sourceDf["Salary"].desc())
     highest=sourceDf.withColumn("2nd_Highest", F.dense_rank().over(v))
     return highest
-
+#writing back after processing 
 def write_mysql(spark, sc):
     output=secondHighest(spark, sc)
     output.write.format("jdbc").option("driver", driver)\
@@ -60,6 +60,7 @@ def write_mysql(spark, sc):
     .save()
 
 
+    #main function
 
 if __name__ == '__main__':
     spark,sc=create_session()
